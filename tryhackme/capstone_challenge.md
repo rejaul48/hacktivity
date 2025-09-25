@@ -5,11 +5,6 @@
 **Rejaul Islam**  
 _Security enthusiast_
 
-…………………………………………………………………………..…………………………………………………………………
-
-Capstone Challenge
-……………………………………………………………………………………………………………………………………………..
-
 After completing the Linux privilege escalation module, you get a challenge named “Capstone.” In this challenge, we have an IP address, username:password, and a hint to log in with SSH. Then, you try to get root access and read the flag.
 
 So let’s get started with Rejaul.
@@ -42,14 +37,12 @@ sudo -l
 
 Res:
 
-```
 We trust you have received the usual lecture from the local system.
 Administrator. It usually boils down to these three things:
 
 #1) Respect the privacy of others.
 #2) Think before you type.
-    #3) With great power comes great responsibility.
-```
+#3) With great power comes great responsibility.
 
 Oops! Sudo permission denied.
 
