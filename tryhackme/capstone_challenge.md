@@ -1,6 +1,6 @@
 # Capstone Challenge
 
-## Credits
+**Credits**
 
 **Rejaul Islam**  
 _Security enthusiast_
