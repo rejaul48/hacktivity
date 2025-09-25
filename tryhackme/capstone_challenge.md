@@ -5,7 +5,7 @@
 **Rejaul Islam**  
 _Security enthusiast_
 
-<hr>
+............................................
 
 After completing the Linux privilege escalation module, you get a challenge named “Capstone.” In this challenge, we have an IP address, username:password, and a hint to log in with SSH. Then, you try to get root access and read the flag.
 
