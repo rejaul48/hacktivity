@@ -1,5 +1,12 @@
 # 🖥️ DC-4 Privilege Escalation Walkthrough
 
+**Credits:**
+
+**Rejaul Islam**  
+_Security enthusiast_
+
+............................................
+
 ## Step-1: Reconnaissance – Find Target IP
 
 **note:** Recon all process kind of similar that i explain into previous machine. In this machine i use just example for recon processs. Mind it!.
